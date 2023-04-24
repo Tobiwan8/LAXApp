@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="Repos\Commands\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>
