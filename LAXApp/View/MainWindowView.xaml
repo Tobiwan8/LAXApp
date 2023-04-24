@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LAXApp.View"
+        xmlns:viewModel="clr-namespace:LAXApp.ViewModel"
         mc:Ignorable="d"
         Title="MainWindowView" Height="450" Width="600"
         WindowStyle="None"
@@ -11,6 +12,9 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
+    <Window.Resources>
+        <viewModel:ButtonCloseViewModel x:Key="CloseApp"/>
+    </Window.Resources>
     <Grid>
         <Border CornerRadius="20"
                 Background="#000000">
@@ -63,6 +67,7 @@
                                 FontFamily="Montserrat"
                                 Cursor="Hand"
                                 Grid.Column="3"
+                                Command="{Binding Source={StaticResource CloseApp}, Path=CloseAppCommand}"
                                 Style="{StaticResource TitleBarButtonStyle}"/>
                     </Grid>
 
