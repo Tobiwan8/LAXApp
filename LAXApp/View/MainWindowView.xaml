@@ -95,24 +95,21 @@
 
                             <StackPanel>
 
-                                <Button x:Name="ReviewMovie"
-                                        Content="Anmeld Film"
+                                <Button Content="Anmeld Film"
                                         FontSize="18"
                                         FontFamily="Montserrat"
                                         Cursor="Hand"
                                         Margin="0,60,0,0"
                                         Style="{StaticResource ButtonStyle}"/>
 
-                                <Button x:Name="CreateMovie"                       
-                                        Content="Opret Film"
+                                <Button Content="Opret Film"
                                         FontSize="18"
                                         FontFamily="Montserrat"
                                         Cursor="Hand"
                                         Margin="0,40,0,0"
                                         Style="{StaticResource ButtonStyle}"/>
 
-                                <Button x:Name="EditMovie"                       
-                                        Content="Rediger Film"
+                                <Button Content="Rediger Film"
                                         FontSize="18"
                                         FontFamily="Montserrat"
                                         Cursor="Hand"
