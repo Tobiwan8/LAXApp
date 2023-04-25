@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LAXApp.View;
+using LAXApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,15 @@ namespace LAXApp
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = new MainWindowView()
+            {
+                DataContext = new MainViewModel()
+            };
+            MainWindow.Show();
+            
+            base.OnStartup(e);
+        }
     }
 }

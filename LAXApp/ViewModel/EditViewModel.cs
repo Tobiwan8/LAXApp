@@ -1,6 +1,9 @@
-﻿namespace LAXApp.ViewModel
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace LAXApp.ViewModel
 {
-    internal class EditViewModel
+    internal class EditViewModel : ObservableObject
     {
+
     }
 }

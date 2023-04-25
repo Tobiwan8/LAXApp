@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LAXApp.View"
         xmlns:viewModel="clr-namespace:LAXApp.ViewModel"
+        xmlns:view="clr-namespace:LAXApp.View"
         mc:Ignorable="d"
         Title="MainWindowView" Height="450" Width="600"
         WindowStyle="None"
@@ -12,9 +13,7 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
-    <Window.DataContext>
-        <viewModel:MainViewModel/>
-    </Window.DataContext>
+    
     <Grid>
         <Border CornerRadius="20"
                 Background="#000000">

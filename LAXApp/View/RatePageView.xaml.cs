@@ -15,9 +15,12 @@ using System.Windows.Shapes;
 
 namespace LAXApp.View
 {
-    public partial class ReviewPageView_ : Page
+    /// <summary>
+    /// Interaction logic for RatePageView.xaml
+    /// </summary>
+    public partial class RatePageView : Page
     {
-        public ReviewPageView_()
+        public RatePageView()
         {
             InitializeComponent();
         }

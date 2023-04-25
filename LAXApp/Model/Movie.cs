@@ -10,13 +10,13 @@ namespace LAXApp.Model
     {
         //Fields
         private string? _title;
-        private List<string>? _categories;
+        private string? _categories;
         private int _rating;
 
         //Properties
         internal string? Title{ get => _title; set => _title = value;}
 
-        internal List<string>? Categories { get => _categories; set => _categories = value;}
+        internal string? Categories { get => _categories; set => _categories = value;}
 
         internal int Rating { get => _rating; set => _rating = value;}
     }

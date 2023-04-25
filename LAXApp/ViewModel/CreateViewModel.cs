@@ -1,6 +1,8 @@
-﻿namespace LAXApp.ViewModel
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace LAXApp.ViewModel
 {
-    internal class CreateViewModel
+    internal class CreateViewModel : ObservableObject
     {
     }
 }

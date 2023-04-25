@@ -2,8 +2,8 @@
 
 namespace LAXApp.ViewModel
 {
-    internal class MainViewModel : ObservableObject
+    internal class RateViewModel : ObservableObject
     {
-
+        
     }
 }
