@@ -10,14 +10,14 @@ namespace LAXApp.Model
     {
         //Fields
         private string? _title;
-        private string? _categories;
-        private int _rating;
+        private int _genreID;
 
         //Properties
         internal string? Title{ get => _title; set => _title = value;}
-
-        internal string? Categories { get => _categories; set => _categories = value;}
-
-        internal int Rating { get => _rating; set => _rating = value;}
+        internal int GenreID
+        {
+            get { return _genreID; }
+            set { _genreID = value; }
+        }
     }
 }

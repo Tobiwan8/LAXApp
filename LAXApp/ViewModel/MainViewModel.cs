@@ -45,6 +45,8 @@ namespace LAXApp.ViewModel
             {
                 CurrentView = RateVM;
             });
+
         }
+
     }
 }
