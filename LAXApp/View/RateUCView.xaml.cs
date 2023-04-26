@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace LAXApp.View
 {
     /// <summary>
-    /// Interaction logic for CreatePageView.xaml
+    /// Interaction logic for RateUCView.xaml
     /// </summary>
-    public partial class CreatePageView : Page
+    public partial class RateUCView : UserControl
     {
-        public CreatePageView()
+        public RateUCView()
         {
             InitializeComponent();
         }
