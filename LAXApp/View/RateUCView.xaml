@@ -6,10 +6,16 @@
              xmlns:local="clr-namespace:LAXApp.View"
              mc:Ignorable="d" 
              d:DesignHeight="420" d:DesignWidth="439">
-    <Grid Background="Aqua">
-        <TextBlock Text="Test" Foreground="Black"
-                   HorizontalAlignment="center"
-                   VerticalAlignment="center"
-                   FontSize="150"/>
+    <Grid Background="Transparent">
+        <StackPanel>
+            <TextBlock Margin="0,10,0,0"
+                       Text="Vælg film"
+                       FontSize="20"/>
+            <ComboBox/>
+            <TextBlock Margin="0,10,0,0"
+                       Text="Bedøm film"
+                       FontSize="20"/>
+            <ComboBox />
+        </StackPanel>
     </Grid>
 </UserControl>
