@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LAXApp.View" xmlns:viewmodel="clr-namespace:LAXApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CreateViewModel}"
+             xmlns:local="clr-namespace:LAXApp.View" 
+             xmlns:viewmodel="clr-namespace:LAXApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CreateViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="420" d:DesignWidth="439">
     
@@ -17,14 +18,14 @@
                        Text="Genre"
                        FontSize="20"/>
             <TextBox Text="{Binding MovieGenre}"/>
-            <TextBlock Text="{Binding MovieInfo}"/>
             <!--<ComboBox/>-->
             <Button Content="Opret"
                     FontFamily="Montserrat"
                     FontSize="20"
                     Margin="0,20,0,0"
                     Style="{StaticResource ButtonStyle}"
-                    Command="{Binding CreateCommand}"/>
+                    IsEnabled="{Binding IsNotBusy}"
+                    Command="{Binding CreateMovieBtnClickCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
