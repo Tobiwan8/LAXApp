@@ -21,17 +21,5 @@ namespace LAXApp.Model
             get { return _genreID; }
             set { _genreID = value; }
         }
-
-        public Movie(string title)
-        {
-            Title = title;
-        }
-
-        public Movie(string title, int genreId)
-        {
-            Title=title;
-            GenreID = genreId;
-        }
-
     }
 }

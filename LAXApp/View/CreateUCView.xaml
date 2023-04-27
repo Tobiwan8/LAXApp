@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LAXApp.View" 
-             xmlns:viewmodel="clr-namespace:LAXApp.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CreateViewModel}"
+             xmlns:viewmodel="clr-namespace:LAXApp.ViewModel" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:CreateViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="420" d:DesignWidth="439">
     
@@ -17,14 +18,14 @@
             <TextBlock Margin="0,10,0,0"
                        Text="Genre"
                        FontSize="20"/>
-            <TextBox Text="{Binding MovieGenre}"/>
-            <!--<ComboBox/>-->
+            <ComboBox ItemsSource="{Binding MovieGenres}"
+                      DisplayMemberPath="Value" 
+                      SelectedItem="{Binding MovieGenre}"/>
             <Button Content="Opret"
                     FontFamily="Montserrat"
                     FontSize="20"
                     Margin="0,20,0,0"
                     Style="{StaticResource ButtonStyle}"
-                    IsEnabled="{Binding IsNotBusy}"
                     Command="{Binding CreateMovieBtnClickCommand}"/>
         </StackPanel>
     </Grid>
