@@ -12,11 +12,13 @@
             <TextBlock Margin="0,10,0,0"
                        Text="Film Titel"
                        FontSize="20"/>
-            <TextBox />
+            <TextBox Text="{Binding MovieTitle}"/>
             <TextBlock Margin="0,10,0,0"
                        Text="Genre"
                        FontSize="20"/>
-            <ComboBox/>
+            <TextBox Text="{Binding MovieGenre}"/>
+            <TextBlock Text="{Binding MovieInfo}"/>
+            <!--<ComboBox/>-->
             <Button Content="Opret"
                     FontFamily="Montserrat"
                     FontSize="20"

@@ -8,7 +8,6 @@ namespace LAXApp.View
         public CreateUCView()
         {
             InitializeComponent();
-            //BindGenres.UpdateGenres();
         }
     }
 }

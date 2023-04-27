@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace LAXApp.ViewModel
 {
-    internal class CreateViewModel : ObservableObject
+    internal partial class CreateViewModel : ObservableObject
     {
         public ICommand CreateCommand { get; }
 
@@ -13,5 +13,16 @@ namespace LAXApp.ViewModel
         {
             CreateCommand = new CreateMovieCommand();
         }
+
+        //Observable Properties
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(MovieInfo))]
+        string movieTitle;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(MovieInfo))]
+        string movieGenre;
+
+        public string MovieInfo => $"{MovieTitle} {MovieGenre}";
     }
 }

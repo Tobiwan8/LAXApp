@@ -8,8 +8,6 @@ namespace LAXApp.View
         public EditUCView()
         {
             InitializeComponent();
-            //BindMovies.UpdateMovies();
-            //BindGenres.UpdateGenres();
         }
     }
 }
