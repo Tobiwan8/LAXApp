@@ -14,7 +14,7 @@ namespace LAXApp.Model
         public int Id { get { return _id; } set { _id = value; } }
         public string Genre { get { return _genre; } set { _genre = value; } }
 
-        public static readonly Dictionary<int, string> MovieGenres = new()
+        public static Dictionary<int, string> MovieGenres = new()
         {
             { 1, "Ikke Angivet"},
             { 2, "Action" },
