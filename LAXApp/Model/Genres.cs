@@ -12,24 +12,24 @@ namespace LAXApp.Model
         //Fields
         private int _id;
         private string _genre;
-        private static readonly Dictionary<int, string> _movieGenres = new()
+        private static readonly Dictionary<string, int> _movieGenres = new()
         {
-            { 1, "Ikke Angivet" },
-            { 2, "Action" },
-            { 3, "Animated" },
-            { 4, "Comedy" },
-            { 5, "Drama" },
-            { 6, "Horror" },
-            { 7, "Romance" },
-            { 8, "Sci-Fi" },
-            { 9, "Thriller" }
+            { "Ikke Angivet", 1 },
+            { "Action", 2 },
+            { "Animated", 3 },
+            { "Comedy", 4 },
+            { "Drama", 5 },
+            { "Horror", 6 },
+            { "Romance", 7 },
+            { "Sci-Fi", 8 },
+            { "Thriller", 9 }
         };
 
         //Properties
         public int Id { get { return _id; } set { _id = value; } }
         public string Genre { get { return _genre; } set { _genre = value; } }
 
-        public static Dictionary<int, string> MovieGenres
+        public static Dictionary<string, int> MovieGenres
         {
             get
             {

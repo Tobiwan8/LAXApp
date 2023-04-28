@@ -1,10 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LAXApp.Model;
-using System;
 using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Input;
+using LAXApp.MSSQL;
 
 namespace LAXApp.ViewModel
 {
@@ -12,11 +10,11 @@ namespace LAXApp.ViewModel
     {
         //Observable Properties
         [ObservableProperty]
-        Dictionary<int, string> movieGenres = new(Genres.MovieGenres);
+        Dictionary<string, int> movieGenres = new(Genres.MovieGenres);
         
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(MovieInfo))]
-        string? movieTitle;
+        string movieTitle;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(MovieInfo))]
@@ -27,7 +25,9 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         void CreateMovieBtnClick()
         {
-            MessageBox.Show(MovieInfo);
+            //MessageBox.Show(MovieInfo);
+            CreateMovie NewMovie = new();
+            NewMovie.AddMovie(MovieTitle, MovieGenre);
         }
     }
 }

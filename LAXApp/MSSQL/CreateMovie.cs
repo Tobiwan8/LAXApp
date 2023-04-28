@@ -7,38 +7,35 @@ namespace LAXApp.MSSQL
 {
     internal class CreateMovie
     {
-        private readonly string _message = "Angiv venligst Titel og Genre";
-        private static bool IsValid(Movie movie)
+        internal void AddMovie(string title, string genre)
         {
-            if (movie.Title == null)
-                return false;
-            else
-                return true;
-        }
-        internal void AddMovie(Movie movie)
-        {
-            if (IsValid(movie))
+            
+
+            try
             {
-                try
-                {
-                    ConnectionString connectionString = new();
-                    SqlConnection sqlCon = new(connectionString.ConnectionToSql);
-                    sqlCon.Open();
+                ConnectionString connectionString = new();
+                SqlConnection sqlCon = new(connectionString.ConnectionToSql);
+                sqlCon.Open();
 
-                    SqlCommand insertNewUserData = new($"INSERT INTO Movies VALUES ('{movie.Title}', '{movie.GenreID}')", sqlCon);
+                if(genre == null)
+                {
+                    SqlCommand insertNewUserData = new($"INSERT INTO Movies VALUES ('{title}'", sqlCon);
                     insertNewUserData.ExecuteNonQuery();
-
-                    MessageBox.Show("Bruger oprettet");
-
-                    sqlCon.Close();
                 }
-                catch (Exception e)
+                else
                 {
-                    MessageBox.Show(e.Message);
+                    SqlCommand insertNewUserData = new($"INSERT INTO Movies VALUES ('{title}', '{genre}'", sqlCon);
+                    insertNewUserData.ExecuteNonQuery();
                 }
+
+                MessageBox.Show("Bruger oprettet");
+
+                sqlCon.Close();
             }
-            else
-                MessageBox.Show(_message, "FEJL", MessageBoxButton.OK, MessageBoxImage.Error);
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }
