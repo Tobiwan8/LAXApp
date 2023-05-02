@@ -1,30 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Windows;
 
 namespace LAXApp.MSSQL
 {
     internal class BindGenresToCombobox
     {
-        internal static void BindGenres(ComboBox cb, string command)
+        internal static List<string> GenresList()
         {
+            List<string> genresList = new();
             ConnectionString connectionString = new();
             SqlConnection sqlConnection = new(connectionString.ConnectionToSql);
-            SqlCommand sqlCommand = new(command, sqlConnection);
-            ComboBox comboBox = new();
+            SqlCommand sqlCommand = new("SELECT Genre FROM Genres", sqlConnection);
+            SqlDataReader dr;
 
-            sqlConnection.Open();
+            try
+            {
+                sqlConnection.Open();
+                dr = sqlCommand.ExecuteReader();
 
-            SqlDataReader dr = sqlCommand.ExecuteReader();
-            comboBox.Items.Add(dr);
-            cb.ItemsSource = comboBox.ItemsSource;
+                while (dr.Read())
+                {
+                    genresList.Add((string)dr.GetValue(0));
+                }
+                dr.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
 
-            sqlConnection.Close();
+            finally { sqlConnection.Close(); }
+
+            return genresList;
         }
     }
 }

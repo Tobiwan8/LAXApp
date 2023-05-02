@@ -11,12 +11,15 @@ namespace LAXApp.ViewModel
     {
         //Observable Properties
         [ObservableProperty]
+        private List<string> genreList = new(BindGenresToCombobox.GenresList());
+
+        [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Title))]
-        string? movieTitle;
+        private string? movieTitle;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Genre))]
-        string? movieGenre;
+        private string? movieGenre;
 
         public string? Title => MovieTitle;
         public string? Genre => MovieGenre;
@@ -24,9 +27,7 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         void CreateMovieBtnClick()
         {
-            MessageBox.Show(Title);
-            //CreateMovie NewMovie = new();
-            //NewMovie.AddMovie(MovieTitle, MovieGenre[]);
+            CreateMovie.AddMovie(MovieTitle, MovieGenre);
         }
     }
 }
