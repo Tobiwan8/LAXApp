@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using LAXApp.Model;
 using System.Collections.Generic;
 using LAXApp.MSSQL;
+using System.Windows;
 
 namespace LAXApp.ViewModel
 {
@@ -10,24 +11,22 @@ namespace LAXApp.ViewModel
     {
         //Observable Properties
         [ObservableProperty]
-        Dictionary<string, int> movieGenres = new(Genres.MovieGenres);
-        
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(MovieInfo))]
-        string movieTitle;
+        [NotifyPropertyChangedFor(nameof(Title))]
+        string? movieTitle;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(MovieInfo))]
+        [NotifyPropertyChangedFor(nameof(Genre))]
         string? movieGenre;
 
-        public string MovieInfo => $"{MovieTitle} {MovieGenre}";
+        public string? Title => MovieTitle;
+        public string? Genre => MovieGenre;
 
         [RelayCommand]
         void CreateMovieBtnClick()
         {
-            //MessageBox.Show(MovieInfo);
-            CreateMovie NewMovie = new();
-            NewMovie.AddMovie(MovieTitle, MovieGenre);
+            MessageBox.Show(Title);
+            //CreateMovie NewMovie = new();
+            //NewMovie.AddMovie(MovieTitle, MovieGenre[]);
         }
     }
 }

@@ -9,26 +9,22 @@ namespace LAXApp.MSSQL
     {
         internal void AddMovie(string title, string genre)
         {
-            
-
+            if(genre == null)
+            {
+                genre = "Ikke Angivet";
+            }
             try
             {
                 ConnectionString connectionString = new();
                 SqlConnection sqlCon = new(connectionString.ConnectionToSql);
                 sqlCon.Open();
 
-                if(genre == null)
-                {
-                    SqlCommand insertNewUserData = new($"INSERT INTO Movies VALUES ('{title}'", sqlCon);
-                    insertNewUserData.ExecuteNonQuery();
-                }
-                else
-                {
-                    SqlCommand insertNewUserData = new($"INSERT INTO Movies VALUES ('{title}', '{genre}'", sqlCon);
-                    insertNewUserData.ExecuteNonQuery();
-                }
+                int genreId = GetGenreId(sqlCon, genre);
 
-                MessageBox.Show("Bruger oprettet");
+                SqlCommand insertNewUserData = new($"INSERT INTO Movies VALUES ('{title}', {genreId}", sqlCon);
+                insertNewUserData.ExecuteNonQuery();
+
+                MessageBox.Show("Film tilføjet");
 
                 sqlCon.Close();
             }
@@ -36,6 +32,16 @@ namespace LAXApp.MSSQL
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        private static int GetGenreId(SqlConnection connection, string genre)
+        {
+            SqlConnection sqlCon = connection;
+
+            SqlCommand sqlCommand = new($"SELECT Id FROM Genres WHERE Genre ='{genre}'", sqlCon);
+            int genreId = Convert.ToInt32(((string)sqlCommand.ExecuteScalar()).ToString());
+
+            return genreId;
         }
     }
 }
