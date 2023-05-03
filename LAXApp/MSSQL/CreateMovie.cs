@@ -1,5 +1,4 @@
-﻿using LAXApp.Model;
-using System;
+﻿using System;
 using System.Data.SqlClient;
 using System.Windows;
 
@@ -9,26 +8,24 @@ namespace LAXApp.MSSQL
     {
         internal static void AddMovie(string title, string genre)
         {
-            if(genre == null)
+            ConnectionString connectionString = new();
+
+            if (genre == null)
             {
                 genre = "Ikke Angivet";
             }
             try
             {
-                ConnectionString connectionString = new();
-                SqlConnection sqlCon = new(connectionString.ConnectionToSql);
+                using SqlConnection sqlCon = new(connectionString.ConnectionToSql);
                 sqlCon.Open();
-
                 int genreId = GetGenreId(sqlCon, genre);
 
-                SqlCommand addMovieToDB = new($"INSERT INTO Movies VALUES (@Title, @GenreId", sqlCon);
+                using SqlCommand addMovieToDB = new("INSERT INTO Movies VALUES (@Title, @GenreId)", sqlCon);
                 addMovieToDB.Parameters.Add(new SqlParameter("@Title", title));
                 addMovieToDB.Parameters.Add(new SqlParameter("@GenreId", genreId));
-                addMovieToDB.ExecuteNonQuery();
+                int rows = addMovieToDB.ExecuteNonQuery();
 
                 MessageBox.Show("Film tilføjet");
-
-                sqlCon.Close();
             }
             catch (Exception e)
             {
@@ -36,15 +33,14 @@ namespace LAXApp.MSSQL
             }
         }
 
-        private static int GetGenreId(SqlConnection connection, string genre)
+        private static int GetGenreId(SqlConnection sqlCon, string genre)
         {
-            SqlConnection sqlCon = connection;
-
-            SqlCommand sqlCommand = new($"SELECT Id FROM Genres WHERE Genre = @Genre", sqlCon);
+            SqlCommand sqlCommand = new("SELECT Id FROM Genres WHERE Genre = @Genre", sqlCon);
             sqlCommand.Parameters.Add(new SqlParameter("@Genre", genre));
-            SqlDataReader dr = sqlCommand.ExecuteReader();
 
-            return dr.GetInt32(0);
+            int genreId = (int)sqlCommand.ExecuteScalar();
+
+            return genreId;
         }
     }
 }
