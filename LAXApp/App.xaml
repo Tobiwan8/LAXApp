@@ -24,6 +24,10 @@
                 <view:CreateUCView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:OverviewViewModel}">
+                <view:OverviewUCView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -18,6 +18,7 @@
                        FontSize="20"/>
             <ComboBox ItemsSource="{Binding GenreList}"
                       SelectedItem="{Binding MovieGenre}"/>
+            
             <Grid>
                 <Button Content="Rediger"
                         FontFamily="Montserrat"

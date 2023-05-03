@@ -17,16 +17,19 @@ namespace LAXApp.MSSQL
             try
             {
                 using SqlConnection sqlCon = new(connectionString.ConnectionToSql);
-                sqlCon.Open();
-                int genreId = GetGenreId(sqlCon, genre);
+                {
+                    sqlCon.Open();
+                    int genreId = GetGenreId(sqlCon, genre);
 
-                using SqlCommand addMovieToDB = new("INSERT INTO Movies VALUES (@Title, @GenreId)", sqlCon);
-                addMovieToDB.Parameters.Add(new SqlParameter("@Title", title));
-                addMovieToDB.Parameters.Add(new SqlParameter("@GenreId", genreId));
-                addMovieToDB.ExecuteNonQuery();
+                    using SqlCommand addMovieToDB = new("INSERT INTO Movies VALUES (@Title, @GenreId)", sqlCon);
+                    {
+                        addMovieToDB.Parameters.Add(new SqlParameter("@Title", title));
+                        addMovieToDB.Parameters.Add(new SqlParameter("@GenreId", genreId));
+                        addMovieToDB.ExecuteNonQuery();
+                    }
 
-                MessageBox.Show("Film tilføjet");
-                sqlCon.Close();
+                    MessageBox.Show("Film tilføjet");
+                }
             }
             catch (Exception e)
             {

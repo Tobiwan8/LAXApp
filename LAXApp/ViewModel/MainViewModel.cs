@@ -9,11 +9,13 @@ namespace LAXApp.ViewModel
         public RelayCommand EditViewCommand { get; set; }
         public RelayCommand CreateViewCommand { get; set; }
         public RelayCommand RateViewCommand { get; set; }
+        public RelayCommand OverviewViewCommand { get; set; }
 
         //UserControl ViewModels
         public CreateViewModel CreateVM { get; set; }
         public EditViewModel EditVM { get; set; }
         public RateViewModel RateVM { get; set; }
+        public OverviewViewModel OverviewVM { get; set; }
 
 
         private object _currentView;
@@ -33,6 +35,7 @@ namespace LAXApp.ViewModel
             EditVM = new EditViewModel();
             RateVM = new RateViewModel();
             CreateVM = new CreateViewModel();
+            OverviewVM = new OverviewViewModel();
 
             EditViewCommand = new RelayCommand(() =>
             {
@@ -49,6 +52,10 @@ namespace LAXApp.ViewModel
                 CurrentView = RateVM;
             });
 
+            OverviewViewCommand = new RelayCommand(() =>
+            {
+                CurrentView = OverviewVM;
+            });
         }
 
     }

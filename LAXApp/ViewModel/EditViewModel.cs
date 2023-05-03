@@ -28,13 +28,14 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         void EditMovieBtnClick()
         {
-            MessageBox.Show("Redigerer");
+            EditMovie.Edit_Movie(Title, Genre);
         }
 
         [RelayCommand]
         void DeleteMovieBtnClick()
         {
             EditMovie.DeleteMovie(Title);
+            
         }
     }
 }

@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="LAXApp.View.OverviewUCView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LAXApp.View"
+             xmlns:viewmodel="clr-namespace:LAXApp.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewmodel:OverviewViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="439">
+    <Grid>
+        <DataGrid IsReadOnly="True"
+                  FontFamily="Montserrat">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Title}"
+                                    Header="Titel"
+                                    CanUserResize="True"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding Genre}" 
+                                    Header="Genre"
+                                    CanUserResize="True"
+                                    Width="*"/>
+                <DataGridTextColumn Binding="{Binding Rating}"
+                                    Header="Rating"
+                                    CanUserResize="True"
+                                    Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
