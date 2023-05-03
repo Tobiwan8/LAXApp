@@ -23,9 +23,10 @@ namespace LAXApp.MSSQL
                 using SqlCommand addMovieToDB = new("INSERT INTO Movies VALUES (@Title, @GenreId)", sqlCon);
                 addMovieToDB.Parameters.Add(new SqlParameter("@Title", title));
                 addMovieToDB.Parameters.Add(new SqlParameter("@GenreId", genreId));
-                int rows = addMovieToDB.ExecuteNonQuery();
+                addMovieToDB.ExecuteNonQuery();
 
                 MessageBox.Show("Film tilføjet");
+                sqlCon.Close();
             }
             catch (Exception e)
             {

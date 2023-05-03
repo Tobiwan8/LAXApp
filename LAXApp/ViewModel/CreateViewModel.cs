@@ -27,7 +27,7 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         void CreateMovieBtnClick()
         {
-            CreateMovie.AddMovie(MovieTitle, MovieGenre);
+            CreateMovie.AddMovie(Title, Genre);
         }
     }
 }
