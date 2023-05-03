@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace LAXApp.View
 {
-    /// <summary>
-    /// Interaction logic for RateUCView.xaml
-    /// </summary>
     public partial class RateUCView : UserControl
     {
         public RateUCView()

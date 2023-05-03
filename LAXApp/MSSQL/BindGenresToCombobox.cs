@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
+using LAXApp.Model;
 
 namespace LAXApp.MSSQL
 {
     internal class BindGenresToCombobox
     {
-        internal static List<string> GenresList()
+        internal static List<Genres> GenresList()
         {
-            List<string> genresList = new();
+            List<Genres> genresList = new();
             ConnectionString connectionString = new();
             SqlConnection sqlConnection = new(connectionString.ConnectionToSql);
-            SqlCommand sqlCommand = new("SELECT Genre FROM Genres", sqlConnection);
+            SqlCommand sqlCommand = new("SELECT Id, Genre FROM Genres", sqlConnection);
             SqlDataReader dr;
 
             try
@@ -22,8 +23,14 @@ namespace LAXApp.MSSQL
 
                 while (dr.Read())
                 {
-                    genresList.Add((string)dr.GetValue(0));
+                    genresList.Add(new Genres
+                        {
+                            Id = (int)dr.GetValue(0),
+                            Type = (string)dr.GetValue(1)
+                        }
+                    );
                 }
+                        
                 dr.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }

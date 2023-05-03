@@ -3,15 +3,11 @@
     internal class Movie
     {
         //Fields
-        private string? _title;
-        private int _genreID;
+
 
         //Properties
-        internal string? Title{ get => _title; set => _title = value;}
-        internal int GenreID
-        {
-            get { return _genreID; }
-            set { _genreID = value; }
-        }
+        internal int Id { get; set; }
+        internal string? Title{ get; set;}
+        internal int GenreID { get; set; }
     }
 }

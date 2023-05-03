@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LAXApp.Model;
 using LAXApp.MSSQL;
 using System.Collections.Generic;
-using System.Windows;
 
 namespace LAXApp.ViewModel
 {
@@ -12,7 +12,7 @@ namespace LAXApp.ViewModel
         private List<string> movieList = new(BindGenresToCombobox.MoviesList());
 
         [ObservableProperty]
-        private List<string> genreList = new(BindGenresToCombobox.GenresList());
+        private List<Genres> genreList = new(BindGenresToCombobox.GenresList());
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Title))]

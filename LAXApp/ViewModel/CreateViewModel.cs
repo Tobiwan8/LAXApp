@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using LAXApp.Model;
 using System.Collections.Generic;
 using LAXApp.MSSQL;
-using System.Windows;
+using LAXApp.Model;
+using System.Linq;
 
 namespace LAXApp.ViewModel
 {
@@ -11,7 +11,7 @@ namespace LAXApp.ViewModel
     {
         //Observable Properties
         [ObservableProperty]
-        private List<string> genreList = new(BindGenresToCombobox.GenresList());
+        private List<Genres> genreList = BindGenresToCombobox.GenresList();
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Title))]
@@ -25,9 +25,18 @@ namespace LAXApp.ViewModel
         public string? Genre => MovieGenre;
 
         [RelayCommand]
-        void CreateMovieBtnClick()
+        internal void CreateMovieBtnClick()
         {
-            CreateMovie.AddMovie(Title, Genre);
+            _createMovie?.AddMovie(genreList?.FirstOrDefault(o => o.Type == Genre), new Movie());
+
+        }
+
+        private readonly CreateMovie? _createMovie = null;
+
+        public CreateViewModel()
+        {
+            genreList = new(BindGenresToCombobox.GenresList());
+            _createMovie = new CreateMovie();
         }
     }
 }

@@ -19,6 +19,7 @@
                        Text="Genre"
                        FontSize="20"/>
             <ComboBox ItemsSource="{Binding GenreList}"
+                      DisplayMemberPath="Type"
                       SelectedItem="{Binding MovieGenre}"/>
             <Button Content="Opret"
                     FontFamily="Montserrat"
