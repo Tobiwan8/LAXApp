@@ -12,11 +12,13 @@
                        Text="Vælg film"
                        FontSize="20"/>
             <ComboBox ItemsSource="{Binding MovieList}"
+                      DisplayMemberPath="Title"
                       SelectedItem="{Binding MovieTitle}"/>
             <TextBlock Margin="0,10,0,0"
                        Text="Genre"
                        FontSize="20"/>
             <ComboBox ItemsSource="{Binding GenreList}"
+                      DisplayMemberPath="Type"
                       SelectedItem="{Binding MovieGenre}"/>
             
             <Grid>

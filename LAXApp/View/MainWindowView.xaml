@@ -11,6 +11,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True">
 

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace LAXApp.View
 {
@@ -7,6 +8,11 @@ namespace LAXApp.View
         public MainWindowView()
         {
             InitializeComponent();
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)

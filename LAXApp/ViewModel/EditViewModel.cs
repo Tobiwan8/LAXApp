@@ -3,31 +3,32 @@ using CommunityToolkit.Mvvm.Input;
 using LAXApp.Model;
 using LAXApp.MSSQL;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace LAXApp.ViewModel
 {
     internal partial class EditViewModel : ObservableObject
     {
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Movies))]
+        [NotifyPropertyChangedFor(nameof(MoviesList))]
         private List<Movie> movieList = new(BindGenresToCombobox.MoviesList());
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Genre))]
+        [NotifyPropertyChangedFor(nameof(GenresList))]
         private List<Genres> genreList = new(BindGenresToCombobox.GenresList());
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Title))]
-        private string movieTitle;
+        [NotifyPropertyChangedFor(nameof(Movie))]
+        private Movie? movieTitle;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Genre))]
-        private string movieGenre;
+        private Genres? movieGenre;
 
-        public string Title => MovieTitle;
-        public string Genre => MovieGenre;
-        public List<Movie> Movies => MovieList;
-        public List <Genres> Genres => GenreList;
+        public Movie? Movie => MovieTitle;
+        public Genres? Genre => MovieGenre;
+        public List<Movie> MoviesList => MovieList;
+        public List<Genres> GenresList => GenreList;
 
         [RelayCommand]
         void EditMovieBtnClick()
@@ -36,9 +37,24 @@ namespace LAXApp.ViewModel
         }
 
         [RelayCommand]
-        void DeleteMovieBtnClick()
+        internal void DeleteMovieBtnClick()
         {
-            //EditMovie.DeleteMovie(Title);   
+            Movie movie = new();
+
+            if (Movie.Title != null)
+            {
+                foreach (Movie movieItem in MoviesList)
+                {
+                    if (Movie.Title == movieItem.Title)
+                    {
+                        movie = movieItem;
+                        break;
+                    }
+                }
+                EditMovie editMovie = new();
+                editMovie.DeleteMovie(movie);
+            }
+            else { MessageBox.Show("Vælg venligst Film"); }
         }
     }
 }

@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.Generic;
 using LAXApp.MSSQL;
 using LAXApp.Model;
-using System.Linq;
 using System.Windows;
 
 namespace LAXApp.ViewModel
@@ -29,23 +28,30 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         internal void CreateMovieBtnClick()
         {
-            Movie movie = new();
-            movie.Title = Title;
-
-            Genres genre = new();
-            if(Genre.Type == null) { Genre.Type = "Ikke Angivet"; }
-            
-            foreach(Genres genreItem in GenresList)
+            if (MovieTitle != null)
             {
-                if(Genre.Type == genreItem.Type)
-                {
-                    genre = genreItem;
-                    break;
-                }
-            }
+                Movie? movie = new();
+                movie.Title = Title;
 
-            CreateMovie create = new();
-            create.AddMovie(genre, movie);
+                Genres? genre = new();
+                if (Genre.Type == null) { Genre.Type = "Ikke Angivet"; }
+
+                foreach (Genres genreItem in GenresList)
+                {
+                    if (Genre.Type == genreItem.Type)
+                    {
+                        genre = genreItem;
+                        break;
+                    }
+                }
+
+                CreateMovie create = new();
+                create.AddMovie(genre, movie);
+            }
+            else
+            {
+                MessageBox.Show("Angiv venligs Titel");
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LAXApp.Model;
+using System;
 using System.Data.SqlClient;
 using System.Windows;
 
@@ -37,7 +38,7 @@ namespace LAXApp.MSSQL
             }
         }
 
-        internal static void DeleteMovie(string title)
+        internal void DeleteMovie(Movie movie)
         {
             ConnectionString connectionString = new();
 
@@ -49,7 +50,7 @@ namespace LAXApp.MSSQL
 
                     using SqlCommand deleteMovieFromDB = new("DELETE FROM Movies WHERE Title = @Title", sqlCon);
                     {
-                        deleteMovieFromDB.Parameters.Add(new SqlParameter("@Title", title));
+                        deleteMovieFromDB.Parameters.Add(new SqlParameter("@Title", movie.Title));
                         deleteMovieFromDB.ExecuteNonQuery();
                     }
 
