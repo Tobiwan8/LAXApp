@@ -13,7 +13,7 @@ namespace LAXApp.MSSQL
             List<Genres> genresList = new();
             ConnectionString connectionString = new();
             SqlConnection sqlConnection = new(connectionString.ConnectionToSql);
-            SqlCommand sqlCommand = new("SELECT Id, Genre FROM Genres", sqlConnection);
+            SqlCommand sqlCommand = new("SELECT * FROM Genres", sqlConnection);
             SqlDataReader dr;
 
             try
@@ -40,12 +40,12 @@ namespace LAXApp.MSSQL
             return genresList;
         }
 
-        internal static List<string> MoviesList()
+        internal static List<Movie> MoviesList()
         {
-            List<string> moviesList = new();
+            List<Movie> moviesList = new();
             ConnectionString connectionString = new();
             SqlConnection sqlConnection = new(connectionString.ConnectionToSql);
-            SqlCommand sqlCommand = new("SELECT Title FROM Movies", sqlConnection);
+            SqlCommand sqlCommand = new("SELECT * FROM Movies", sqlConnection);
             SqlDataReader dr;
 
             try
@@ -55,7 +55,12 @@ namespace LAXApp.MSSQL
 
                 while (dr.Read())
                 {
-                    moviesList.Add((string)dr.GetValue(0));
+                    moviesList.Add(new Movie
+                    {
+                        Id = (int)dr.GetValue(0),
+                        Title = (string)dr.GetValue(1),
+                        GenreID = (int)dr.GetValue(2)
+                    });
                 }
                 dr.Close();
             }

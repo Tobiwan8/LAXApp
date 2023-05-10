@@ -9,33 +9,36 @@ namespace LAXApp.ViewModel
     internal partial class EditViewModel : ObservableObject
     {
         [ObservableProperty]
-        private List<string> movieList = new(BindGenresToCombobox.MoviesList());
+        [NotifyPropertyChangedFor(nameof(Movies))]
+        private List<Movie> movieList = new(BindGenresToCombobox.MoviesList());
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Genre))]
         private List<Genres> genreList = new(BindGenresToCombobox.GenresList());
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Title))]
-        private string? movieTitle;
+        private string movieTitle;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Genre))]
-        private string? movieGenre;
+        private string movieGenre;
 
-        public string? Title => MovieTitle;
-        public string? Genre => MovieGenre;
+        public string Title => MovieTitle;
+        public string Genre => MovieGenre;
+        public List<Movie> Movies => MovieList;
+        public List <Genres> Genres => GenreList;
 
         [RelayCommand]
         void EditMovieBtnClick()
         {
-            EditMovie.Edit_Movie(Title, Genre);
+            //EditMovie.Edit_Movie(Title, Genre);
         }
 
         [RelayCommand]
         void DeleteMovieBtnClick()
         {
-            EditMovie.DeleteMovie(Title);
-            
+            //EditMovie.DeleteMovie(Title);   
         }
     }
 }

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using LAXApp.MSSQL;
 using LAXApp.Model;
 using System.Linq;
+using System.Windows;
 
 namespace LAXApp.ViewModel
 {
     internal partial class CreateViewModel : ObservableObject
     {
-        //Observable Properties
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(GenresList))]
         private List<Genres> genreList = BindGenresToCombobox.GenresList();
 
         [ObservableProperty]
@@ -19,24 +20,32 @@ namespace LAXApp.ViewModel
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Genre))]
-        private string? movieGenre;
+        private Genres? movieGenre;
 
         public string? Title => MovieTitle;
-        public string? Genre => MovieGenre;
+        public Genres? Genre => MovieGenre;
+        public List<Genres> GenresList => GenreList;
 
         [RelayCommand]
         internal void CreateMovieBtnClick()
         {
-            _createMovie?.AddMovie(genreList?.FirstOrDefault(o => o.Type == Genre), new Movie());
+            Movie movie = new();
+            movie.Title = Title;
 
-        }
+            Genres genre = new();
+            if(Genre.Type == null) { Genre.Type = "Ikke Angivet"; }
+            
+            foreach(Genres genreItem in GenresList)
+            {
+                if(Genre.Type == genreItem.Type)
+                {
+                    genre = genreItem;
+                    break;
+                }
+            }
 
-        private readonly CreateMovie? _createMovie = null;
-
-        public CreateViewModel()
-        {
-            genreList = new(BindGenresToCombobox.GenresList());
-            _createMovie = new CreateMovie();
+            CreateMovie create = new();
+            create.AddMovie(genre, movie);
         }
     }
 }

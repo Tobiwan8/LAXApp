@@ -2,12 +2,8 @@
 {
     internal class Movie
     {
-        //Fields
-
-
-        //Properties
-        internal int Id { get; set; }
-        internal string? Title{ get; set;}
-        internal int GenreID { get; set; }
+        public int Id { get; set; }
+        public string? Title{ get; set;}
+        public int GenreID { get; set; }
     }
 }
