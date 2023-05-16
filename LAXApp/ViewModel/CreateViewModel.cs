@@ -28,10 +28,12 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         internal void CreateMovieBtnClick()
         {
-            if (MovieTitle != null)
+            if (Title != null)
             {
-                Movie? movie = new();
-                movie.Title = Title;
+                Movie? movie = new()
+                {
+                    Title = Title
+                };
 
                 Genres? genre = new();
                 if (Genre.Type == null) { Genre.Type = "Ikke Angivet"; }
@@ -50,7 +52,7 @@ namespace LAXApp.ViewModel
             }
             else
             {
-                MessageBox.Show("Angiv venligs Titel");
+                MessageBox.Show("Angiv venligst Titel");
             }
         }
     }

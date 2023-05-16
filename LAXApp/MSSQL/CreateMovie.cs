@@ -10,9 +10,7 @@ namespace LAXApp.MSSQL
         internal void AddMovie(Genres genre, Movie movie)
         {
             ConnectionString connectionString = new();
-            Movie newMovie = new();
-            newMovie.Id = -1;
-    
+
             try
             {
                 using SqlConnection sqlCon = new(connectionString.ConnectionToSql);
@@ -24,8 +22,6 @@ namespace LAXApp.MSSQL
                         addMovieToDB.Parameters.Add(new SqlParameter("@Title", movie.Title));
                         addMovieToDB.Parameters.Add(new SqlParameter("@GenreId", genre.Id));
                         addMovieToDB.ExecuteNonQuery();
-                        //newMovieId = (int)addMovieToDB.ExecuteScalar();
-                        //movie.Id = newMovieId;
                     }
 
                     MessageBox.Show("Film tilføjet");

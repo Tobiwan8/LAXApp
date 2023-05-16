@@ -8,12 +8,8 @@ namespace LAXApp.Model
 {
     internal class Ratings
     {
-        private int _rating;
-
-        internal int Rating 
-        { 
-            get { return _rating; } 
-            set { _rating = value; } 
-        }
+        public int Rating { get; set; }
+        public int Id { get; set; }
+        public int MovieId { get; set; }
     }
 }

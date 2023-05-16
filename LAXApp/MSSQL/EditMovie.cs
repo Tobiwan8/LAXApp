@@ -7,25 +7,20 @@ namespace LAXApp.MSSQL
 {
     internal class EditMovie
     {
-        internal static void Edit_Movie(string title, string genre)
+        internal static void Edit_Movie(Genres genre, Movie movie)
         {
             ConnectionString connectionString = new();
 
-            if (genre == null)
-            {
-                genre = "Ikke Angivet";
-            }
             try
             {
                 using SqlConnection sqlCon = new(connectionString.ConnectionToSql);
                 {
                     sqlCon.Open();
-                    int genreId = GetGenreId(sqlCon, genre);
 
                     using SqlCommand editMovieFromDB = new("UPDATE Movies SET GenreId = @GenreId WHERE Title = @Title", sqlCon);
                     {
-                        editMovieFromDB.Parameters.Add(new SqlParameter("@GenreId", genreId));
-                        editMovieFromDB.Parameters.Add(new SqlParameter("@Title", title));
+                        editMovieFromDB.Parameters.Add(new SqlParameter("@GenreId", genre.Id));
+                        editMovieFromDB.Parameters.Add(new SqlParameter("@Title", movie.Title));
                         editMovieFromDB.ExecuteNonQuery();
                     }
 
