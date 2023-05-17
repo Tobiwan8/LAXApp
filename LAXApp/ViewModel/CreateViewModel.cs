@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using LAXApp.MSSQL;
 using LAXApp.Model;
 using System.Windows;
+using System.CodeDom;
 
 namespace LAXApp.ViewModel
 {
@@ -19,10 +20,10 @@ namespace LAXApp.ViewModel
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Genre))]
-        private Genres? movieGenre;
+        private string? movieGenre;
 
         public string? Title => MovieTitle;
-        public Genres? Genre => MovieGenre;
+        public string? Genre => MovieGenre;
         public List<Genres> GenresList => GenreList;
 
         [RelayCommand]
@@ -36,11 +37,11 @@ namespace LAXApp.ViewModel
                 };
 
                 Genres? genre = new();
-                if (Genre.Type == null) { Genre.Type = "Ikke Angivet"; }
+                if (Genre == null) { genre.Type = "Ikke Angivet"; }
 
                 foreach (Genres genreItem in GenresList)
                 {
-                    if (Genre.Type == genreItem.Type)
+                    if (genre.Type == genreItem.Type)
                     {
                         genre = genreItem;
                         break;
@@ -49,6 +50,7 @@ namespace LAXApp.ViewModel
 
                 CreateMovie create = new();
                 create.AddMovie(genre, movie);
+                OnPropertyChanged();
             }
             else
             {
