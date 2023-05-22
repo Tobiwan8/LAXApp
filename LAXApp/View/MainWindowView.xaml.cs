@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using LAXApp.ViewModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace LAXApp.View

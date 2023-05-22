@@ -20,10 +20,10 @@ namespace LAXApp.ViewModel
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Genre))]
-        private string? movieGenre;
+        private Genres? movieGenre;
 
         public string? Title => MovieTitle;
-        public string? Genre => MovieGenre;
+        public Genres? Genre => MovieGenre;
         public List<Genres> GenresList => GenreList;
 
         [RelayCommand]
@@ -37,7 +37,8 @@ namespace LAXApp.ViewModel
                 };
 
                 Genres? genre = new();
-                if (Genre == null) { genre.Type = "Ikke Angivet"; }
+                if (Genre != null) { genre.Type = Genre.Type; }
+                else { genre.Type = "Ikke Angivet"; }
 
                 foreach (Genres genreItem in GenresList)
                 {
@@ -50,7 +51,6 @@ namespace LAXApp.ViewModel
 
                 CreateMovie create = new();
                 create.AddMovie(genre, movie);
-                OnPropertyChanged();
             }
             else
             {
