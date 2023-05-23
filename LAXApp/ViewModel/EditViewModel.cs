@@ -31,7 +31,7 @@ namespace LAXApp.ViewModel
         public List<Genres> GenresList => GenreList;
 
         [RelayCommand]
-        void EditMovieBtnClick()
+        internal void EditMovieBtnClick()
         {
             if (Movie != null)
             {
@@ -63,7 +63,7 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         internal void DeleteMovieBtnClick()
         {
-            Movie movie = new();
+            Movie? movie = new();
 
             if (Movie.Title != null)
             {

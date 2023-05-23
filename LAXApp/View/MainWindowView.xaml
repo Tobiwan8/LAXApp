@@ -99,7 +99,7 @@
 
                             <StackPanel>
 
-                                <Button Content="Anmeld Film"
+                                <Button Content="Bedøm Film"
                                         FontSize="18"
                                         FontFamily="Montserrat"
                                         Cursor="Hand"

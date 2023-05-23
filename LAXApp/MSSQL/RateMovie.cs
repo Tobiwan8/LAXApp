@@ -7,7 +7,7 @@ namespace LAXApp.MSSQL
 {
     internal class RateMovie
     {
-        internal void Rate_Movie(Genres genre, Movie movie)
+        internal void Rate_Movie(Ratings rating, Movie movie)
         {
             ConnectionString connectionString = new();
 
@@ -17,10 +17,10 @@ namespace LAXApp.MSSQL
                 {
                     sqlCon.Open();
 
-                    using SqlCommand CreateRatingInDB = new("UPDATE Movies SET GenreId = @GenreId WHERE Title = @Title", sqlCon);
+                    using SqlCommand CreateRatingInDB = new("INSERT INTO Ratings VALUES (@MovieID, @Rating)", sqlCon);
                     {
-                        CreateRatingInDB.Parameters.Add(new SqlParameter("@GenreId", genre.Id));
-                        CreateRatingInDB.Parameters.Add(new SqlParameter("@Title", movie.Title));
+                        CreateRatingInDB.Parameters.Add(new SqlParameter("@MovieID", movie.Id));
+                        CreateRatingInDB.Parameters.Add(new SqlParameter("@Rating", rating.Rating));
                         CreateRatingInDB.ExecuteNonQuery();
                     }
 
