@@ -16,7 +16,7 @@
         AllowsTransparency="True">
 
     <Window.DataContext>
-        <viewModel:MainViewModel/>
+        <viewModel:MainWindowViewModel/>
     </Window.DataContext>
     
     <Grid>
