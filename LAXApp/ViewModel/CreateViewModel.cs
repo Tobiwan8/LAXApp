@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using LAXApp.MSSQL;
 using LAXApp.Model;
 using System.Windows;
-using System.CodeDom;
+using LAXApp.View;
 
 namespace LAXApp.ViewModel
 {

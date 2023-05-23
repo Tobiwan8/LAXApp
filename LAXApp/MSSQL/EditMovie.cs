@@ -7,7 +7,7 @@ namespace LAXApp.MSSQL
 {
     internal class EditMovie
     {
-        internal static void Edit_Movie(Genres genre, Movie movie)
+        internal void Edit_Movie(Genres genre, Movie movie)
         {
             ConnectionString connectionString = new();
 

@@ -33,25 +33,31 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         void EditMovieBtnClick()
         {
-            Movie? movie = new()
+            if (Movie != null)
             {
-                Title = Movie.Title
-            };
+                Movie? movie = Movie;
 
-            Genres? genre = new();
-            if (Genre.Type == null) { Genre.Type = "Ikke Angivet"; }
+                Genres? genre = new();
 
-            foreach (Genres genreItem in GenresList)
-            {
-                if (Genre.Type == genreItem.Type)
+                if (Genre != null) { genre.Type = Genre.Type; }
+                else { genre.Type = "Ikke Angivet"; }
+
+                foreach (Genres genreItem in GenresList)
                 {
-                    genre = genreItem;
-                    break;
+                    if (genre.Type == genreItem.Type)
+                    {
+                        genre = genreItem;
+                        break;
+                    }
                 }
-            }
 
-            CreateMovie create = new();
-            create.AddMovie(genre, movie);
+                EditMovie edit = new();
+                edit.Edit_Movie(genre, movie);
+            }
+            else
+            {
+                MessageBox.Show("Vælg venligst Titel");
+            }
         }
 
         [RelayCommand]
