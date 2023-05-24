@@ -10,7 +10,9 @@
              d:DesignHeight="420" d:DesignWidth="439">
     <Grid>
         <DataGrid IsReadOnly="True"
-                  FontFamily="Montserrat">
+                  FontFamily="Montserrat"
+                  ItemsSource="{Binding DGItemList}"
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Title}"
                                     Header="Titel"
@@ -20,10 +22,12 @@
                                     Header="Genre"
                                     CanUserResize="True"
                                     Width="*"/>
-                <DataGridTextColumn Binding="{Binding Rating}"
+                <DataGridTextColumn Binding="{Binding Rating, StringFormat={}{0:0.00}}"
                                     Header="Rating"
                                     CanUserResize="True"
-                                    Width="70"/>
+                                    Width="70">
+                    
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

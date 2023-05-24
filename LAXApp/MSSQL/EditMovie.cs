@@ -57,15 +57,5 @@ namespace LAXApp.MSSQL
                 MessageBox.Show(e.Message);
             }
         }
-
-        private static int GetGenreId(SqlConnection sqlCon, string genre)
-        {
-            SqlCommand sqlCommand = new("SELECT Id FROM Genres WHERE Genre = @Genre", sqlCon);
-            sqlCommand.Parameters.Add(new SqlParameter("@Genre", genre));
-
-            int genreId = (int)sqlCommand.ExecuteScalar();
-
-            return genreId;
-        }
     }
 }

@@ -35,7 +35,7 @@ namespace LAXApp.ViewModel
         {
             if (ChosenMovie != null && ChosenRating != null)
             {
-                Movie? movie = new();
+                Movie? movie = new() { Title = ChosenMovie.Title};
 
                 Ratings? rating = new() { Rating = (int)ChosenRating };
 

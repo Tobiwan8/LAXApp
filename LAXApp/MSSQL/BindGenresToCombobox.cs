@@ -70,5 +70,35 @@ namespace LAXApp.MSSQL
 
             return moviesList;
         }
+
+        internal static List<Ratings> RatingsList()
+        {
+            List<Ratings> ratingsList = new();
+            ConnectionString connectionString = new();
+            SqlConnection sqlConnection = new(connectionString.ConnectionToSql);
+            SqlCommand sqlCommand = new("SELECT * FROM Ratings", sqlConnection);
+            SqlDataReader dr;
+
+            try
+            {
+                sqlConnection.Open();
+                dr = sqlCommand.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ratingsList.Add(new Ratings
+                    {
+                        Id = (int)dr.GetValue(0),
+                        MovieId = (int)dr.GetValue(1),
+                    });
+                }
+                dr.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+            finally { sqlConnection.Close(); }
+
+            return ratingsList;
+        }
     }
 }
