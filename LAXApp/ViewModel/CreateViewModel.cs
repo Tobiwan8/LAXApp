@@ -29,7 +29,7 @@ namespace LAXApp.ViewModel
         [RelayCommand]
         internal void CreateMovieBtnClick()
         {
-            if (Title != null)
+            if (!string.IsNullOrWhiteSpace(Title))
             {
                 Movie? movie = new()
                 {
